@@ -1,0 +1,14 @@
+.borderstyle {
+  border: .7rem solid rgb(48, 48, 48);
+  border-radius: 2rem;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@700&display=swap');
+
+.instarpan {
+  color: #0a0702;
+  font-family: 'Great Vibes', cursive;
+  line-height: 1;
+}
+
