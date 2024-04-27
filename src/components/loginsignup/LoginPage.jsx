@@ -8,20 +8,38 @@ import microsoft from "../../assets/microsoft.png";
 import "../../../src/App.css"
 import { AiFillFacebook } from "react-icons/ai";
 import { useNavigate, NavLink } from 'react-router-dom';
+import Footer from '../../globalcomponents/Footer';
+import InputField from '../../globalcomponents/InputField';
+import Button1 from '../../globalcomponents/Button1';
+
+
 
 
 function LoginPage() {
     const navigate = useNavigate()
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const images = [loginImage1, loginimage2, screenshot4];
+    const [formData, setFormData] = useState({
+        PhoneEmailUser: '',
+        Password: ''
+    })
+
+    const handleChange = (e) => {
+        setFormData((oldData => ({ ...oldData, [e.target.name]: e.target.value })))
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        console.log(formData, 'formData')
+    }
 
 
     useEffect(() => {
         const intervalId = setInterval(() => {
             setCurrentImageIndex(prevIndex => (prevIndex + 1) % images.length);
-            console.log(currentImageIndex, 'currentImageIndex')
+            // console.log(currentImageIndex, 'currentImageIndex')
         }, 3000);
-        console.log(intervalId,'intervalId')
+        // console.log(intervalId, 'intervalId')
         return () => clearInterval(intervalId);
     }, [images.length]);
 
@@ -34,7 +52,7 @@ function LoginPage() {
                         <div>
                             <img src={loginimage3} alt='img2' className='w-[250px] h-[500px] borderstyle me-28 ' />
                         </div>
-                        <hr class="bg-neutral-800 h-7 rounded-b-xl w-32 absolute top-[20px] left-[150px] color1" />
+                        <hr className="bg-neutral-800 h-7 rounded-b-xl w-32 absolute top-[20px] left-[150px] color1" />
                         <div >
                             <img src={images[currentImageIndex]} alt={`img${currentImageIndex + 1}`} className='w-[250px] shadow h-[520px] borderstyle absolute top-[10px] left-1/4  ' />
                         </div>
@@ -42,26 +60,34 @@ function LoginPage() {
                 </div>
 
                 <div className='mx-auto lg:mx-0'>
-                    <form className='border-2  rounded lg:px-10 lg:w-80 w-80 lg:mt-20 px-5' action="">
+                    <form onSubmit={handleSubmit} className='border-2  rounded lg:px-10 lg:w-80 w-80 lg:mt-20 px-5' action="">
                         <div>
                             <p className='text-center text-4xl instarpan  py-10'>Instarpan</p>
-                            <input type="text"
+                            {/* <input type="text"
                                 className=" bg-gray-50 border rounded border-gray-400 text-gray-700 p-2
-                    w-full  leading-tight focus:outline-none focus:border-blue-500 text-sm" placeholder='Phone number, username , or email' />
+                    w-full  leading-tight focus:outline-none focus:border-blue-500 text-sm" /> */}
 
-                            <input type="text"
-                                className=" bg-gray-50 border rounded border-gray-400 text-gray-700 p-2 mt-2
-                    w-full  leading-tight focus:outline-none focus:border-blue-500 text-sm" placeholder='Password' />
-                            <button type="submit" className='border w-full text-sm py-1 rounded mt-5 bg-sky-800 text-white'>Log in</button>
+                            <InputField type='text'
+                                name='PhoneEmailUser'
+                                value={formData.PhoneEmailUser}
+                                handleChange={handleChange}
+                                placeholder='Phone number, username , or email' />
 
+                            <InputField type='password'
+                                name='Password'
+                                value={formData.Password}
+                                handleChange={handleChange}
+                                placeholder='Password' marginT='mt-3' />
 
-                            <div class="flex items-center pt-4 pb-7">
-                                <div class="flex-1 mr-4">
-                                    <hr class="h-0.5 bg-gray-300" />
+                            <Button1 type="submit" buttonName='Log in' bgColor='bg-sky-800' />
+
+                            <div className="flex items-center pt-4 pb-7">
+                                <div className="flex-1 mr-4">
+                                    <hr className="h-0.5 bg-gray-300" />
                                 </div>
-                                <div class="text-gray-500 text-sm">OR</div>
-                                <div class="flex-1 ml-4">
-                                    <hr class="h-0.5 bg-gray-300" />
+                                <div className="text-gray-500 text-sm">OR</div>
+                                <div className="flex-1 ml-4">
+                                    <hr className="h-0.5 bg-gray-300" />
                                 </div>
                             </div>
 
@@ -89,25 +115,7 @@ function LoginPage() {
 
             </div>
 
-            <div className='lg:mt-28 mt-16 text-center text-xs mx-4 lg:mx-0 w-full lg:px-0'>
-                <div className="flex flex-wrap justify-center gap-4">
-                    <a href="#" className="text-gray-500 text-sm hover:text-blue-500  ">Meta</a>
-                    <a href="#" className="text-gray-500 text-sm hover:text-blue-500 ">About</a>
-                    <a href="#" className="text-gray-500 text-sm hover:text-blue-500 ">Blog</a>
-                    <a href="#" className="text-gray-500 text-sm hover:text-blue-500 ">Jobs</a>
-                    <a href="#" className="text-gray-500 text-sm hover:text-blue-500 ">Help</a>
-                    <a href="#" className="text-gray-500 text-sm hover:text-blue-500 ">API</a>
-                    <a href="#" className="text-gray-500 text-sm hover:text-blue-500 ">Privacy</a>
-                    <a href="#" className="text-gray-500 text-sm hover:text-blue-500 ">Terms</a>
-                    <a href="#" className="text-gray-500 text-sm hover:text-blue-500 ">Locations</a>
-                    <a href="#" className="text-gray-500 text-sm hover:text-blue-500 ">Instagram Lite</a>
-                    <a href="#" className="text-gray-500 text-sm hover:text-blue-500 ">Threads</a>
-                    <a href="#" className="text-gray-500 text-sm hover:text-blue-500 ">Contact Uploading & Non-Users</a>
-                    <a href="#" className="text-gray-500 text-sm hover:text-blue-500 ">Meta Verified</a>
-                </div>
-            </div>
-
-            <p className='text-center text-xs mt-5 text-gray-600 '>© 2024 Instagram from Meta</p>
+            <Footer />
 
         </div>
 
